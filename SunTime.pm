@@ -6,7 +6,10 @@ $VERSION = 0.01;
 
 #  Results can be checked with: http://aa.usno.navy.mil/AA/data/docs/RS_OneYear.html
 
-use Time::ParseDate;
+# 09/03/00 :: winter Make ParseDate optional.  It is overkill and I could not get it to
+#                    compile in perl2exe.  It gave runaway comment errors :(
+# 10/12/00 :: winter Change time_zone check to defined, to allow for time_zone 0 
+
 use POSIX;
 
 use strict;
@@ -17,16 +20,30 @@ use strict;
 #	longitude
 #	time_zone => hours from GMT
 #	date => date parsable by Time::ParseDate::parsedate()
+#	time => to feed to localtime
 
 sub sun_time
 {
    my %params = @_;
 
    my $type = $params{type} || 'rise';
-   my $latitude = $params{latitude} || 38.74274;
-   my $longitude = $params{longitude} || -90.560143;
-   my $time_zone = $params{time_zone} || -6;
-   my @suntime = localtime(parsedate($params{date}));
+   my $latitude  =  38.74274  unless defined $params{latitude};
+   my $longitude = -90.560143 unless defined $params{longitude};
+   my $time_zone =  -6        unless defined $params{time_zone};
+
+   my $time;
+   if ($params{date}) {
+       eval 'use Time::ParseDate';
+       $time = parsedate($params{date});
+   }
+   elsif ($params{time}) {
+       $time = $params{time};
+   }
+   else {
+       $time = time;
+   }
+   my @suntime = localtime($time);
+
    my $yday = $suntime[7] + 1;
 
    my $A = 1.5708;
@@ -41,7 +58,20 @@ sub sun_time
    # For     nautical twilight, use R = -.207912
    # For        civil twilight, use R = -.104528
    # For     sunrise or sunset, use R = -.0145439
+
    my $R = -.0145439;
+   if ($params{twilight}) {
+       if($params{twilight} eq 'astronomical') {
+           $R = -.309017;
+       }
+       elsif($params{twilight} eq 'nautical') {
+           $R = -.207912;
+       }
+       elsif($params{twilight} eq 'civil') {
+           $R = -.104528;
+       }
+   }
+
 
    my $J = ($type eq 'rise') ? $A : $C;
    my $K = $yday + (($J - $F) / $D);
