@@ -1,6 +1,6 @@
 package Astro::SunTime;
 use vars qw(@ISA @EXPORT $VERSION);
-$VERSION = 0.02;
+$VERSION = 0.04;
 @ISA = qw(Exporter);
 @EXPORT = qw(sun_time);
 
