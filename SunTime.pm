@@ -1,6 +1,6 @@
 package Astro::SunTime;
 use vars qw(@ISA @EXPORT $VERSION);
-$VERSION = 0.01;
+$VERSION = 0.02;
 @ISA = qw(Exporter);
 @EXPORT = qw(sun_time);
 
@@ -27,9 +27,9 @@ sub sun_time
    my %params = @_;
 
    my $type = $params{type} || 'rise';
-   my $latitude  =  38.74274  unless defined $params{latitude};
-   my $longitude = -90.560143 unless defined $params{longitude};
-   my $time_zone =  -6        unless defined $params{time_zone};
+   my $latitude  = (defined $params{latitude}) ? $params{latitude} : 38.74274;
+   my $longitude = (defined $params{longitude}) ? $params{longitude} : -90.560143;
+   my $time_zone = (defined $params{time_zone}) ? $params{time_zone} : -6;
 
    my $time;
    if ($params{date}) {
