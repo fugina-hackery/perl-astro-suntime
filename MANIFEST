@@ -1,5 +1,7 @@
-SunTime.pm
 Changes
 MANIFEST
 Makefile.PL
-test.pl
+README
+SunTime.pm
+t/00load.t
+t/01detail.t
