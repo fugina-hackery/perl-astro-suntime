@@ -4,7 +4,7 @@ $VERSION = 0.04;
 @ISA = qw(Exporter);
 @EXPORT = qw(sun_time);
 
-#  Results can be checked with: http://aa.usno.navy.mil/AA/data/docs/RS_OneYear.html
+#  Results can be checked with: http://aa.usno.navy.mil/data/docs/RS_OneYear.php
 
 # 09/03/00 :: winter Make ParseDate optional.  It is overkill and I could not get it to
 #                    compile in perl2exe.  It gave runaway comment errors :(
