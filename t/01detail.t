@@ -19,7 +19,7 @@ my %params = (
 	);
 
 my $time = sun_time( %params );
-printf "%sok 1\n", (($time ne '5:12') ? 'not ' : '');
+printf "%sok 1\n", (($time ne '4:12') ? 'not ' : '');
 
 my $time = sun_time( %params );
 # printf "%sok 2\n", (($time ne '5:13') ? 'not ' : '');

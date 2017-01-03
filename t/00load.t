@@ -24,7 +24,7 @@ print "ok 1\n";
         longitude => -77,
         TZ => 'US/Central',
         date => "7 Aug 2000",
-	) ne '5:13' ) && print 'not ';
+	) ne '4:13' ) && print 'not ';
 print "ok 2\n";
 
 
