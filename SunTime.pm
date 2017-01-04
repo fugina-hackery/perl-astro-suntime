@@ -8,19 +8,19 @@ $VERSION = 0.04;
 
 # 09/03/00 :: winter Make ParseDate optional.  It is overkill and I could not get it to
 #                    compile in perl2exe.  It gave runaway comment errors :(
-# 10/12/00 :: winter Change time_zone check to defined, to allow for time_zone 0 
+# 10/12/00 :: winter Change time_zone check to defined, to allow for time_zone 0
 
 use POSIX;
 
 use strict;
 
 # sun_time takes:
-#	type => 'rise' | 'set'
-#	latitude
-#	longitude
-#	time_zone => hours from GMT
-#	date => date parsable by Time::ParseDate::parsedate()
-#	time => to feed to localtime
+# type => 'rise' | 'set'
+# latitude
+# longitude
+# time_zone => hours from GMT
+# date => date parsable by Time::ParseDate::parsedate()
+# time => to feed to localtime
 
 sub sun_time
 {
@@ -49,7 +49,7 @@ sub sun_time
    my $A = 1.5708;
    my $B = 3.14159;
    my $C = 4.71239;
-   my $D = 6.28319;     
+   my $D = 6.28319;
    my $E = 0.0174533 * $latitude;
    my $F = 0.0174533 * $longitude;
    my $G = 0.261799  * $time_zone;
@@ -93,7 +93,7 @@ sub sun_time
       $P += $B;
    }
 
-   my $Q = .39782 * sin($M);            # Solar Declination 
+   my $Q = .39782 * sin($M);            # Solar Declination
    $Q = $Q / sqrt(-$Q * $Q + 1);     # This is how the original author wrote it!
    $Q = atan2($Q, 1);
 
@@ -117,11 +117,11 @@ sub sun_time
 
    @suntime[2,1,0,8] = ($hour, $min, 0, 0);
 
-   @suntime = localtime(mktime(@suntime));	# normalize date structure
+   @suntime = localtime(mktime(@suntime)); # normalize date structure
 
    return sprintf("%d:%02d", @suntime[2,1]);
 }
-           
+
 sub normalize
 {
    my $Z = shift;
@@ -137,7 +137,7 @@ sub normalize
 
 
 
-1;           
+1;
 
 __END__
 
