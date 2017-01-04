@@ -12,5 +12,6 @@ WriteMakefile(
       Test => 0,
       Time::ParseDate => 0,
     },
+  LICENSE => 'gpl_3',
 );
 

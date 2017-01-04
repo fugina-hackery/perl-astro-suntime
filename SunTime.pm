@@ -1,3 +1,7 @@
+
+# Copyright (c) 1999-2016 Rob Fugina <robf@fugina.com>
+# Distributed under the terms of the GNU Public License, Version 3.0
+
 package Astro::SunTime;
 use vars qw(@ISA @EXPORT $VERSION);
 $VERSION = 0.05;
