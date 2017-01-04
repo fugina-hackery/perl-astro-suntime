@@ -1,36 +1,30 @@
 #!/usr/local/bin/perl
 
-use lib 'blib/lib';
+use strict;
+use Test;
+
+BEGIN { plan tests => 16, todo => [] }
 
 use Astro::SunTime;
-use Date::Manip;
 
-use strict;
+# use of the "date" parameter requires the use of Time::ParseDate by the module
 
-print "1..4\n";
+ok(sun_time(type => 'rise', latitude => 40, longitude => -77, time_zone => -5, date => '1 Jan 1970'), '7:30');
+ok(sun_time(type => 'set',  latitude => 40, longitude => -77, time_zone => -5, date => '1 Jan 1970'), '16:54');
+ok(sun_time(type => 'rise', latitude => 40, longitude => -77, time_zone => -4, date => '1 Sep 1970'), '6:35');
+ok(sun_time(type => 'set',  latitude => 40, longitude => -77, time_zone => -4, date => '1 Sep 1970'), '19:40');
+ok(sun_time(type => 'rise', latitude => 40, longitude => -77, time_zone => -5, date => '1 Jan 2020'), '7:30');
+ok(sun_time(type => 'set',  latitude => 40, longitude => -77, time_zone => -5, date => '1 Jan 2020'), '16:54');
+ok(sun_time(type => 'rise', latitude => 40, longitude => -77, time_zone => -4, date => '1 Sep 2020'), '6:36');
+ok(sun_time(type => 'set',  latitude => 40, longitude => -77, time_zone => -4, date => '1 Sep 2020'), '19:38');
 
-my %params = (
-	debug => 1,
-	type => 'rise',
-	latitude => 40,
-	longitude => -77,
-	TZ => 'GMT-5',
-	date => "6 Aug 2000",
-	);
-
-my $time = sun_time( %params );
-printf "%sok 1\n", (($time ne '4:12') ? 'not ' : '');
-
-my $time = sun_time( %params );
-# printf "%sok 2\n", (($time ne '5:13') ? 'not ' : '');
-print "ok 2\n";
-
-my $time = sun_time( %params );
-#printf "%sok 3\n", (($time ne '5:13') ? 'not ' : '');
-print "ok 3\n";
-
-my $time = sun_time( %params );
-#printf "%sok 4\n", (($time ne '5:13') ? 'not ' : '');
-print "ok 4\n";
+ok(sun_time(type => 'rise', latitude => -45, longitude => 170, time_zone => 12, date => '1 Jan 1970'), '4:57');
+ok(sun_time(type => 'set',  latitude => -45, longitude => 170, time_zone => 12, date => '1 Jan 1970'), '20:30');
+ok(sun_time(type => 'rise', latitude => -45, longitude => 170, time_zone => 12, date => '1 Sep 1970'), '7:10');
+ok(sun_time(type => 'set',  latitude => -45, longitude => 170, time_zone => 12, date => '1 Sep 1970'), '18:11');
+ok(sun_time(type => 'rise', latitude => -45, longitude => 170, time_zone => 12, date => '1 Jan 2020'), '4:57');
+ok(sun_time(type => 'set',  latitude => -45, longitude => 170, time_zone => 12, date => '1 Jan 2020'), '20:30');
+ok(sun_time(type => 'rise', latitude => -45, longitude => 170, time_zone => 12, date => '1 Sep 2020'), '7:08');
+ok(sun_time(type => 'set',  latitude => -45, longitude => 170, time_zone => 12, date => '1 Sep 2020'), '18:12');
 
 
