@@ -116,10 +116,10 @@ sub sun_time
    $V = &normalize($V, $D);
    $V = $V * 3.81972;
 
-   my $hour = int($V);
+   my $hour = int($V) - $suntime[8]; # subtract value of daylight savings
    my $min  = int(($V - $hour) * 60 + 0.5);
 
-   @suntime[2,1,0,8] = ($hour, $min, 0, 0);
+   @suntime[2,1,0] = ($hour, $min, 0);
 
    @suntime = localtime(mktime(@suntime)); # normalize date structure
 
