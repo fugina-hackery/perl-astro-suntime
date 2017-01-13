@@ -119,7 +119,7 @@ sub sun_time
    my $hour = int($V);
    my $min  = int(($V - $hour) * 60 + 0.5);
 
-   @suntime[2,1,0,8] = ($hour, $min, 0, 0);
+   @suntime[2,1,0] = ($hour, $min, 0);
 
    @suntime = localtime(mktime(@suntime)); # normalize date structure
 
