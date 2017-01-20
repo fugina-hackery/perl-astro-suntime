@@ -4,3 +4,4 @@ Makefile
 *.tar.gz
 MYMETA.json
 MYMETA.yml
+Makefile.old

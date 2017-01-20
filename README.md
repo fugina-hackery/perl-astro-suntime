@@ -1,3 +1,0 @@
-
-Astro::SunTime provides a function interface to calculate sun rise/set times.
-

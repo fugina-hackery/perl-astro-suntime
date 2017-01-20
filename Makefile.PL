@@ -1,11 +1,17 @@
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-   NAME => 'Astro::SunTime',
-   VERSION_FROM => 'SunTime.pm',
-   PREREQ_PM =>
-	{ # I know some of these come with perl, but we can't be too careful
-	POSIX			=> 0,
-	},                         
+  NAME => 'Astro::SunTime',
+  VERSION_FROM => 'SunTime.pm',
+  PREREQ_PM =>
+    {
+      POSIX => 0,
+    },
+  BUILD_REQUIRES =>
+    {
+      Test => 0,
+      Time::ParseDate => 0,
+    },
+  LICENSE => 'gpl_3',
 );
 
