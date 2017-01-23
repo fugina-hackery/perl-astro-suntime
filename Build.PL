@@ -15,7 +15,7 @@ my $build = Module::Build->new
    requires => {
       'POSIX' => 0,
       },
-   build_requires => {
+   test_requires => {
       'Test' => 0,
       'Time::ParseDate' => 0,
       },
