@@ -1,7 +1,12 @@
+Build.PL
 Changes
+LICENSE
 MANIFEST
 Makefile.PL
-README
-SunTime.pm
+README.md
+lib/Astro/SunTime.pm
 t/00load.t
 t/01detail.t
+README
+META.yml
+META.json
