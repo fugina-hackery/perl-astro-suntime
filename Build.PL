@@ -24,6 +24,7 @@ my $build = Module::Build->new
       },
    create_readme => 1,
    create_makefile_pl => 'traditional',
+   add_to_cleanup      => [ 'Astro-SunTime-*' ],
   );
 
 $build->create_build_script;
