@@ -37,8 +37,8 @@ sub sun_time
 
    my $time;
    if ($params{date}) {
-       eval 'use Time::ParseDate';
-       $time = parsedate($params{date});
+       require Time::ParseDate;
+       $time = Time::ParseDate::parsedate($params{date});
    }
    elsif ($params{time}) {
        $time = $params{time};
